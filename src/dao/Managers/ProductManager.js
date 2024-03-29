@@ -41,7 +41,6 @@ class ProductManager {
                     break;
             }
         }
-        console.log(check)
         let products = await productsModel.paginate(check, { limit: limit || 10, page: page || 1, sort: sort ? { price: sort } : undefined });
         return products;
     }
@@ -60,16 +59,19 @@ class ProductManager {
         return product;
     }
     async createTestProducts() {
-        return await Promise.all([this.addProduct({ title: "Real", description: "dddd", code: "he", price: 1, status: true, stock: 25, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
-        this.addProduct({ title: "idc", description: "dddd", code: "sadasd", price: 2, status: true, stock: 25, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
-        this.addProduct({ title: "mewhen", description: "dddd", code: "asdasd", price: 3, status: true, stock: 25, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
-        this.addProduct({ title: "pluh", description: "dddd", code: "gfg", price: 4, status: true, stock: 25, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
-        this.addProduct({ title: "heheheh", description: "dddd", code: "xcxc", price: 5, status: true, stock: 25, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
-        this.addProduct({ title: "asdasd", description: "dddd", code: "aaa", price: 6, status: true, stock: 1, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
-        this.addProduct({ title: "eh? hehe!", description: "dddd", code: "v", price: 7, status: true, stock: 25, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
-        this.addProduct({ title: "asdasd", description: "dddd", code: "hehe", price: 8, status: true, stock: 33, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
+        return await Promise.all([
+        this.addProduct({ title: "Real", description: "dddd", code: "he", price: 11, status: true, stock: 25, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
+        this.addProduct({ title: "idc", description: "dddd", code: "sadasd", price: 22, status: true, stock: 0, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
+        this.addProduct({ title: "mewhen", description: "dddd", code: "asdasd", price: 123, status: true, stock: 25, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
+        this.addProduct({ title: "pluh", description: "dddd", code: "gfg", price: 87, status: true, stock: 25, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
+        this.addProduct({ title: "heheheh", description: "dddd", code: "xcxc", price: 15, status: true, stock: 25, category: "z", thumbnails: ["asd.json1", "tt.png"] }),
+        this.addProduct({ title: "asdasd", description: "dddd", code: "aaa", price: 23, status: true, stock: 0, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
+        this.addProduct({ title: "eh? hehe!", description: "dddd", code: "v", price: 66, status: true, stock: 0, category: "z", thumbnails: ["asd.json1", "tt.png"] }),
+        this.addProduct({ title: "asdasd", description: "dddd", code: "hehe", price: 12, status: true, stock: 23, category: "z", thumbnails: ["asd.json1", "tt.png"] }),
         this.addProduct({ title: "Im going to kms", description: "dddd", code: "bleh", price: 9, status: true, stock: 11, category: "w", thumbnails: ["asd.json1", "tt.png"] }),
-        this.addProduct({ title: "eeeee", description: "dddd", code: "bruv", price: 10, status: true, stock: 6, category: "w", thumbnails: [] })]);
+        this.addProduct({ title: "eeeee", description: "dddd", code: "bruv", price: 34, status: true, stock: 6, category: "w", thumbnails: [] }),
+        this.addProduct({ title: "truly", description: "dddd", code: "loss", price: 54, status: true, stock: 1, category: "w", thumbnails: [] })
+    ]);
     }
     #equalArrays(a, b) {
         if (a.length !== b.length) return false;

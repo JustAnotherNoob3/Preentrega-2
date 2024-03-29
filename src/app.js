@@ -16,10 +16,10 @@ const connectMongoDB = async () => {
     try {
         await mongoose.connect(DB_URL)
         console.log("DB connected successfully!");
-        if((await productManager.getProducts()).docs.length == 0){
+        /*if((await productManager.getProducts()).docs.length == 0){
             let a = await productManager.createTestProducts()
             cartManager.createTestCarts(a.map((val) => val.toString()));
-        }
+        }*/
     } catch (err) {
         console.log("DB connection error: ", err);
     }
@@ -27,7 +27,7 @@ const connectMongoDB = async () => {
 
 
 
-const port = 8030;
+const port = 8080;
 const app = express();
 connectMongoDB();
 //main

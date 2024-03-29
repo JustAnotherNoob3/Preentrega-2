@@ -26,14 +26,62 @@ cartRouter.post("/", async (req, res) => {
 cartRouter.post("/:cid/products/:pid", async (req, res) => {
     let cid = req.params.cid;
     let pid = req.params.pid;
-    let qMany = req.query.quantity;
+    let qMany = req.body.quantity;
     try {
         let quantity = await cartManager.addProductToCart(cid, pid, qMany);
-        console.log(quantity)
         res.status(200).send({status: "success", payload: {quantity: quantity}});
+    } catch (error) {
+        console.log({status: "error", error: error.toString()});
+        res.status(400).send({status: "error", error: error.toString()});
+    }
+});
+cartRouter.put("/:cid/products/:pid", async (req, res) => {
+    let cid = req.params.cid;
+    let pid = req.params.pid;
+    let qMany = req.body.quantity;
+    try {
+        await cartManager.setProductQuantity(cid, pid, qMany);
+        res.status(200).send({status: "success"});
     } catch (error) {
         res.status(400).send({status: "error", error: error.toString()});
     }
 });
-
+cartRouter.put("/:cid", async (req, res) => {
+    let cid = req.params.cid;
+    let products = req.body;
+    try {
+        await cartManager.setProducts(cid, products);
+        res.status(200).send({status: "success"});
+    } catch (error) {
+        res.status(400).send({status: "error", error: error.toString()});
+    }
+});
+cartRouter.delete("/:cid/products/:pid", async (req, res) => {
+    let cid = req.params.cid;
+    let pid = req.params.pid;
+    try {
+        await cartManager.deleteProduct(cid, pid);
+        res.status(200).send({status: "success"});
+    } catch (error) {
+        res.status(400).send({status: "error", error: error.toString()});
+    }
+});
+cartRouter.delete("/:cid/products", async (req, res) => {
+    let cid = req.params.cid;
+    try {
+        await cartManager.deleteProducts(cid);
+        res.status(200).send({status: "success"});
+    } catch (error) {
+        res.status(400).send({status: "error", error: error.toString()});
+    }
+});
+cartRouter.delete("/:cid", async (req, res) => {
+    let cid = req.params.cid;
+    try {
+        await cartManager.deleteCart(cid);
+        res.status(200).send({status: "success"});
+    } catch (error) {
+        res.status(400).send({status: "error", error: error.toString()});
+    }
+});
 export default cartRouter;
