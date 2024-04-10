@@ -83,6 +83,12 @@ class CartManager {
             throw Error("No cart with ID " + cartId);
         }
         return cart;
+    };
+    //! ONLY FOR TESTING
+    async getCarts(cartId) {
+        let cart = await cartsModel.find();
+        
+        return cart;
     }
 }
 

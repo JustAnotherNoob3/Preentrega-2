@@ -66,7 +66,7 @@ cartRouter.delete("/:cid/products/:pid", async (req, res) => {
         res.status(400).send({status: "error", error: error.toString()});
     }
 });
-cartRouter.delete("/:cid/products", async (req, res) => {
+/*cartRouter.delete("/:cid/products", async (req, res) => {
     let cid = req.params.cid;
     try {
         await cartManager.deleteProducts(cid);
@@ -74,12 +74,20 @@ cartRouter.delete("/:cid/products", async (req, res) => {
     } catch (error) {
         res.status(400).send({status: "error", error: error.toString()});
     }
-});
+});*/
 cartRouter.delete("/:cid", async (req, res) => {
     let cid = req.params.cid;
     try {
-        await cartManager.deleteCart(cid);
+        await cartManager.deleteProducts(cid); //change to deleteCart
         res.status(200).send({status: "success"});
+    } catch (error) {
+        res.status(400).send({status: "error", error: error.toString()});
+    }
+});
+cartRouter.get("/", async (req, res) => {
+    try {
+        
+        res.status(200).send({payload:await cartManager.getCarts(), status: "success"});
     } catch (error) {
         res.status(400).send({status: "error", error: error.toString()});
     }
